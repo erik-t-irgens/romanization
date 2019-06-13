@@ -1,47 +1,96 @@
 
 $(document).ready(function() {
     $("form#romanizeForm").submit(function(event) {
-        event.preventDefault();
-    });
+
     var userInput = parseInt($("#userInput").val());
+// var I = 1;
+// var V = 5;
+// var X = 10;
+// var L = 50;
+// var C = 100;
+// var D = 500;
+// var M = 1000;
 
-var V = 5;
+// var romanNumerals = [I, V, X, L, C, D, M]
 
+//     function romanize(value) {
+//     //    if (value === I) {
+//     //        return "I";
+//     //     } else if (value === V) {
+//     //        return "V";
+//     //    } else if (value === X) {
+//     //     return "X";
+//     //    } else if (value === L) {
+//     //     return "L";
+//     //    } else if (value === C) {
+//     //        return "C";
+//     //    } else if (value === D) {
+//     //        return "D";
+//     //    } else if (value === M) {
+//     //        return "M";
+//     //    }
+
+//     //    if (value > (3*I) && value < V) {
+//     //        return "IV";
+//     //    } 
+
+//     //    trying a for loop here
+
+//        for (let index = 0; index < romanNumerals.length; index++) {
+//            if (value < I || value > 3999) {
+//                return false;          
+//             } else if (value > romanNumerals[index]) {
+//                 return romanNumerals[index] + romanize(value - romanNumerals[index])
+//             }
+           
+//        }
+
+//     }
+    
+    
+//     }
+    
+    // var testCases = [
+    //     1,
+    //     5,
+    //     10,
+    //     50,
+    //     100,
+    //     500,
+    //     1000,
+    //     4
+    // ];
+
+    // function test() {
+    //     testCases.forEach(function(test){
+    //         console.log(test + '\t' + romanize(test));
+    //     });
+    // }
+
+    // test();
 
     function romanize(value) {
-       if (value === 1) {
-           return "I";
-        } else if (value === 5) {
-           return "V";
-       } else if (value === 10) {
-        return "X";
-       } else if (value === 50) {
-        return "L";
-       } else if (value === 100) {
-           return "C";
-       } else if (value === 500) {
-           return "D";
-       } else if (value === 1000) {
-           return "M";
-       }
+        var literals = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+        var romanNumerals = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
     
+        for (var i = 0; i < literals.length; i++) {
+            if(value < 1)
+                return "";       
     
+            if(value >= literals[i]) {
+                return romanNumerals[i] + romanize(value - literals[i]);        
+            }
+        }
     }
     
-    var testCases = [
-        5,
-        10,
-        100,
-        1000
-    ];
+    var resultant = romanize(userInput);
 
-    function test() {
-        testCases.forEach(function(test){
-            console.log(test + '\t' + romanize(test));
-        });
-    }
+    $("#resultantPrint").append("<p>"+resultant +"</p>");
 
-    test();
-    
+
+
+event.preventDefault();
 });
+});
+
 
